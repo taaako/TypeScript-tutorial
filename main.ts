@@ -20,8 +20,23 @@
 // console.log(add(5)); // 10
 
 // 引数に初期値を与える
-function add(a: number, b: number = 10): number {
-    return a + b;
-}
+// function add(a: number, b: number = 10): number {
+//     return a + b;
+// }
 // console.log(add(5, 3)); // 8
 // console.log(add(5)); // 15
+
+// 関数式
+// var add = function(a: number, b: number): number {
+//     return a + b;
+// }
+
+// アロー関数式
+// var add = (a: number, b: number): number => {
+//     return a + b;
+// }
+
+// アロー関数式のさらに簡略版
+var add = (a: number, b: number): number => a + b;
+
+console.log(add(5, 3));
