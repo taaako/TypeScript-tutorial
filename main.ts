@@ -1,56 +1,22 @@
-// 関数
-// 返り値がない関数: void
+// クラス
 
-// function add(a: number, b: number): number {
-//     return a + b;
-// }
-// console.log(add(5, 3));
-// console.log(add(5, "hello")); // error
+// アクセス修飾子
+// defalt: public (省略可)
+// protected, private
 
-// オプションにする: 引数?
-// オプションにした後に必須の引数は書けない
-// function add(a: number, b?: number): number {
-//     if (b) {
-//         return a + b;
-//     } else {
-//         return a + a;
-//     }
-// }
-// console.log(add(5, 3)); // 8
-// console.log(add(5)); // 10
-
-// 引数に初期値を与える
-// function add(a: number, b: number = 10): number {
-//     return a + b;
-// }
-// console.log(add(5, 3)); // 8
-// console.log(add(5)); // 15
-
-// 関数式
-// var add = function(a: number, b: number): number {
-//     return a + b;
-// }
-
-// アロー関数式
-// var add = (a: number, b: number): number => {
-//     return a + b;
-// }
-
-// アロー関数式のさらに簡略版
-// var add = (a: number, b: number): number => a + b;
-
-// 関数のオーバーロード
-function add(a: number, b: number): number; // シグネチャ
-function add(a: string, b: string): string;
-
-function add(a: any, b: any): any {
-    if (typeof a === "string" && typeof b === "string") {
-        return a + " " + b;
+class User {
+    // public name: string;
+    // constructor(name: string) {
+    //     this.name = name;
+    // }
+    // 上記と同じ、省略版
+    constructor(public name: string) {
     }
-    return a + b;
+    public sayHi(): void {
+        console.log("hi! i am " + this.name);
+    }
 }
 
-console.log(add(5, 3)); // 8
-console.log(add("hello", "world")); // hello world
-
-console.log(add("hello", 3)); // error
+var tom = new User("Tom");
+console.log(tom.name);
+tom.sayHi();
