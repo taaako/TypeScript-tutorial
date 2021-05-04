@@ -46,26 +46,47 @@
 // クラスの継承
 // protected
 // 継承されるクラスで反映される
+// class User {
+//     constructor(protected _name: string) {
+//     }
+//     public sayHi(): void {
+//         console.log("hi! i am " + this._name);
+//     }
+// }
+
+// class AdminiUser extends User {
+//     private _age: number;
+//     constructor(_name: string, _age: number) {
+//         super(_name);
+//         this._age =_age;
+//     }
+//     public sayHi(): void {
+//         console.log("my age: " + this._age);
+//         console.log("my name: " + this._name);
+//         super.sayHi();
+//     }
+// }
+
+// var bob = new AdminiUser("Bob", 23);
+// bob.sayHi();
+
+// 静的メンバ
 class User {
-    constructor(protected _name: string) {
+    name: string;
+    constructor(name: string) {
+        this.name = name;
+        User.count++;
     }
     public sayHi(): void {
-        console.log("hi! i am " + this._name);
+        console.log("hi! i am " + this.name);
+    }
+    static count: number = 0;
+    static showDescription(): void {
+        console.log("this class is about users");
     }
 }
 
-class AdminiUser extends User {
-    private _age: number;
-    constructor(_name: string, _age: number) {
-        super(_name);
-        this._age =_age;
-    }
-    public sayHi(): void {
-        console.log("my age: " + this._age);
-        console.log("my name: " + this._name);
-        super.sayHi();
-    }
-}
-
-var bob = new AdminiUser("Bob", 23);
-bob.sayHi();
+var tom = new User("Tom");
+var bob = new User("Bob");
+console.log(User.count); // 2
+User.showDescription();
