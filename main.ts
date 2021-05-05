@@ -1,42 +1,20 @@
-// Generics
+// 内部モジュール
 
-// function getStringArray(value: string): string[] {
-//     return [value, value, value];
-// }
-// function getStringArray(value: number): number[] {
-//     return [value, value, value];
-// }
-
-// Typeを指定する
-// function getArray<T>(value: T): T[] {
-//     return [value, value, value];
+module UserModule {
+//     export var name = "sato";
+//     export module AddressModule {
+//         export var zip = "111-1111";
+//     }
 // }
 
-// console.log(getArray<number>(3)); // [ 3, 3, 3 ]
-// console.log(getArray<string>("hello")); // [ 'hello', 'hello', 'hello' ]
+// moduleを別ファイルから呼び出す
+// "/// <...>" でファイルを呼び出せる
+// コンパイルするとmain.jsとuser.jsになるので、１つにしたい時はコマンドに「--out all.js」を付け足す
+/// <reference path="./user.ts" />
 
-interface Result {
-    a: number;
-    b: number;
-}
-interface FinalResult {
-    a: number;
-    b: number;
-    c: string;
-}
-class MyData<T extends Result> {
-    constructor(public value: T) {}
-    getArray(): T[] {
-        return [this.value, this.value, this.value];
-    }
-}
+console.log(UserModule.name);
+console.log(UserModule.AddressModule.zip);
 
-// var v1 = new MyData<string>("hello");
-// console.log(v1.getArray());
-// var v2 = new MyData<number>(234);
-// console.log(v2.getArray());
-
-// var v3 = new MyData<Result>({a: 32, b: 16});
-// console.log(v3.getArray());
-var v4 = new MyData<FinalResult>({a: 32, b: 16, c: "hello"});
-console.log(v4.getArray());
+// モジュール名の省略を指定
+import addr = UserModule.AddressModule;
+console.log(addr.zip);
